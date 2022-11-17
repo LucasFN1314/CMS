@@ -9,9 +9,11 @@
                 <div class="header-list">
                     <ul>
                         <li><a href="/">Inicio</a></li>
-                        <li v-if="isLoggedIn()"><a href="#">Panel</a></li>
-                        <li><a href="#">Sitios</a></li>
-                        <li v-if="isLoggedIn()"><a href="#">Configuración</a></li>
+                        <li v-if="isAdmin()"><a href="#">Panel</a></li>
+                        <li v-if="isAdmin()"><a href="#">Sitios</a></li>
+                        <li v-if="isLoggedIn() && !isAdmin()"><a href="#">Mi sitio</a></li>
+                        <li v-if="isAdmin()"><a href="#">Configuración</a></li>
+
                         <li v-if="isLoggedIn()"><a href="#">Mi perfil</a></li>
                         <li v-if="!isLoggedIn()"><a href="/iniciar-sesion">Iniciar Sesion</a></li>
                     </ul>
@@ -30,6 +32,12 @@ export default {
     methods: {
         isLoggedIn() {
             if(window.auth_user == true) {
+                return true;
+            }
+            return false;
+        },
+        isAdmin() {
+            if(window.auth_admin == true) {
                 return true;
             }
             return false;

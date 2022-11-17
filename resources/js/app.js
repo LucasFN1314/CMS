@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('app-header', require('./components/Header.vue').default);
 Vue.component('notification', require('./components/utils/notification.vue').default);
 Vue.component('inicio-sesion', require('./components/sesion/iniciar-sesion.vue').default);
+Vue.component('home', require('./components/pages/home.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

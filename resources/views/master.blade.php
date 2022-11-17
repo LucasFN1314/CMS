@@ -9,16 +9,23 @@
 
 @php
 $auth_user = '';
+$auth_admin = '';
 
 if(Auth::check()){
     Session::put('logged', 'true');
     $auth_user = true;
+
+    if(Auth::user()->admin == 1) {
+        Session::put('admin', 'true');
+        $auth_admin = true;
+    }
 }
 @endphp
 
 
 <script>
     window.auth_user = {!! json_encode($auth_user); !!};
+    window.auth_admin = {!! json_encode($auth_admin); !!};
 </script>
 
 <input type="hidden" name="_token" id="csrf" value="{{ csrf_token() }}" />

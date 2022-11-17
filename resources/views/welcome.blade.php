@@ -17,18 +17,13 @@
     <link rel="stylesheet" href="./css/welcome.css">
 </head>
 <body>
-    
-
     @section('content')
     <app-header></app-header>
-
-    <example-component></example-component>
-
+    <home></home>
     <main></main>
-
     <footer></footer>
-
     <div class="progress-scroll"></div>
     @endsection
 </body>
+
 </html>
