@@ -4,7 +4,8 @@
         <div class="notification-content">
             <h3>{{title}}</h3>
             <p>{{desc}}</p>
-            <button type="button" class="btn btn-outline-secondary" v-on:click="hide()">{{button}}</button>
+            <button v-if="action != ''" type="button" class="btn btn-outline-secondary" v-on:click="goTo()">{{button}}</button>
+            <button v-if="action == ''" type="button" class="btn btn-outline-secondary" v-on:click="hide()">{{button}}</button>
         </div>
     </div>
   </div>
@@ -17,7 +18,8 @@ export default {
             show: false,
             title: 'Titulo',
             desc: 'Descripción',
-            button: 'Aceptar'
+            button: 'Aceptar',
+            action: ''
         }
     },
     methods: {
@@ -30,6 +32,12 @@ export default {
         hide() {
             this.show = false;
         },
+        setAction(action) {
+            this.action = action;
+        },
+        goTo() {
+            location.href = this.action;
+        }
     },
 }
 </script>
@@ -38,7 +46,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 .notification-container {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
 
     position: absolute;

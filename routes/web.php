@@ -19,4 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/iniciar-sesion', [UserController::class, 'loginpage']);
+Route::get('/registrarse', [UserController::class, 'registerpage']);
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register']);

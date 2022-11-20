@@ -64,7 +64,7 @@ header {
     width: 100%;
     height: 5.4em;
 
-    background-color: #151521;
+    background-color: #202030;
     
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -119,7 +119,7 @@ header>.container>.content>.header-list>ul>li:hover {
 
 header>.container>.content>.header-list>ul>li>a {
     text-decoration: none;
-    color:rgb(161, 161, 161);
+    color:rgb(190, 190, 190);
 
     height: 100%;
     display: flex;

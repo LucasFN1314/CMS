@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div class="background"></div>
         <div class="form-container">
             <div class="form-content">
                 <h3>Inicio de sesion</h3>
@@ -21,7 +20,7 @@
 
                     <button v-on:click="login()" type="button" class="btn btn-in btn-outline-dark">Ingresar</button>
                     <a href="#">Recuperar contraseña</a>
-                    <a href="#">Registrarse</a>
+                    <a href="/registrarse">Registrarse</a>
                 </form>
             </div>
         </div>
@@ -69,15 +68,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-.background {
-    width: 100%;
-    position: absolute;
-    height: calc(100vh - 5.4em);
-
-    background: #0e0e18;
-    z-index: 0;
-}
-
 .form-container {
     width: 100%;
     height: calc(100vh - 5.4em);
@@ -95,7 +85,7 @@ export default {
     width: 30%;
     height: 90%;
 
-    background: #151521;
+    background: #202030;
     border-radius: 1%;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 
