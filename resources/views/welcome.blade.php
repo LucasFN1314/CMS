@@ -1,7 +1,9 @@
 @extends('master')
 
+@php
 
 
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,7 @@
 <body>
     @section('content')
     <app-header></app-header>
-    <home></home>
+    <filemanager></filemanager>
     <main></main>
     <footer></footer>
     <div class="progress-scroll"></div>

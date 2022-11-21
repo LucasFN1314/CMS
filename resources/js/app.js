@@ -24,7 +24,7 @@ Vue.component('app-header', require('./components/Header.vue').default);
 Vue.component('notification', require('./components/utils/notification.vue').default);
 Vue.component('inicio-sesion', require('./components/sesion/iniciar-sesion.vue').default);
 Vue.component('registro', require('./components/sesion/register.vue').default);
-Vue.component('home', require('./components/pages/home.vue').default);
+Vue.component('filemanager', require('./components/pages/filemanager.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
