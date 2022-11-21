@@ -21,10 +21,14 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('app-header', require('./components/Header.vue').default);
-Vue.component('notification', require('./components/utils/notification.vue').default);
 Vue.component('inicio-sesion', require('./components/sesion/iniciar-sesion.vue').default);
 Vue.component('registro', require('./components/sesion/register.vue').default);
 Vue.component('filemanager', require('./components/pages/filemanager.vue').default);
+
+// Utils
+Vue.component('notification', require('./components/utils/notification.vue').default);
+Vue.component('dropdown', require('./components/utils/dropdownButton.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

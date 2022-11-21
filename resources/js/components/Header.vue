@@ -14,7 +14,8 @@
                         <li v-if="isLoggedIn() && !isAdmin()"><a href="#">Mi sitio</a></li>
                         <li v-if="isAdmin()"><a href="#">Configuración</a></li>
 
-                        <li v-if="isLoggedIn()"><a href="#">Mi perfil</a></li>
+                        <!--<li v-if="isLoggedIn()"><a href="#">Mi perfil</a></li>-->
+                        <dropdown v-if="isLoggedIn()" :href="'#'" :text="'Mi perfil'" :list="mi_perfil" ></dropdown>
                         <li v-if="!isLoggedIn()"><a href="/iniciar-sesion">Iniciar Sesion</a></li>
                     </ul>
                 </div>
@@ -28,6 +29,20 @@ import axios from 'axios';
 export default {
     mounted() {
         
+    },
+    data() {
+        return {
+            mi_perfil: {
+                'Mis archivos': {
+                    'text': 'Mis archivos',
+                    'link': '/usuario/archivos'
+                },
+                'Cerrar sesion': {
+                    'text': 'Cerrar sesion',
+                    'action': '/api/user/logout'
+                }
+            }
+        }
     },
     methods: {
         isLoggedIn() {
@@ -46,7 +61,7 @@ export default {
 }
 </script>
 
-<style scopped>
+<style scoped>
 a {
     padding-left: .6em; padding-right: .6em;
 }

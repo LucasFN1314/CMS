@@ -21,7 +21,6 @@
 <body>
     @section('content')
     <app-header></app-header>
-    <filemanager></filemanager>
     <main></main>
     <footer></footer>
     <div class="progress-scroll"></div>
