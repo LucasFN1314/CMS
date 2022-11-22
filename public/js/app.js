@@ -5501,8 +5501,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     user_email: function user_email() {
       return window.user_email;
+    },
+    click_uploader: function click_uploader(type) {
+      if (type == 'own') {
+        document.getElementById('own-file-upload').click();
+      }
+    },
+    uploadForm: function uploadForm() {
+      document.getElementById('own-files-form').submit();
     }
-  }
+  },
+  props: ['own__files', 'public__files', 'all__files']
 });
 
 /***/ }),
@@ -11176,7 +11185,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.file-manager[data-v-65a8d1aa], .own-files[data-v-65a8d1aa] {\r\n  margin-left: 2em;\n}\n.subir-archivo>.container[data-v-65a8d1aa] {\r\n  margin: 0;\r\n  padding: 0;\n}\nform[data-v-65a8d1aa] {\r\n  margin-top: 2em;\r\n\r\n  display: flex;\r\n  flex-direction: column;\n}\nbutton[data-v-65a8d1aa] {\r\n  width: 10%;\n}\n.archivos-subidos[data-v-65a8d1aa] {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  margin-top: 1em;\n}\na[data-v-65a8d1aa] {\r\n  padding: 0 !important;\r\n  text-decoration: none;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.file-manager[data-v-65a8d1aa],\r\n.own-files[data-v-65a8d1aa] {\n}\n.subir-archivo>.container[data-v-65a8d1aa] {\r\n  margin: 0;\r\n  padding: 0;\n}\n.content[data-v-65a8d1aa] {\r\n  color: white;\n}\nform[data-v-65a8d1aa] {\r\n  margin-top: 2em;\r\n\r\n  display: flex;\r\n  flex-direction: column;\n}\nbutton[data-v-65a8d1aa] {\r\n  width: 10%;\n}\n.archivos-subidos[data-v-65a8d1aa] {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  margin-top: 1em;\r\n  color: white;\n}\na[data-v-65a8d1aa] {\r\n  padding: 0 !important;\r\n  text-decoration: none;\n}\n.own-files[data-v-65a8d1aa] {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  align-items: center;\r\n  justify-content: center;\n}\n.subir-arhivo[data-v-65a8d1aa] {\r\n  width: -moz-fit-content;\r\n  width: fit-content;\r\n  padding: .4em;\r\n  color: white;\n}\n.upload-container[data-v-65a8d1aa] {\r\n  width: 100%;\r\n\r\n  display: flex;\r\n  justify-content: center;\n}\n.upload-container>button[data-v-65a8d1aa] {\r\n  border:none;\r\n  border-radius: 0%;\n}\n.upload-container>input[data-v-65a8d1aa] {\r\n  width: 30%;\r\n  border-radius: 0%;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29967,65 +29976,71 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "file-manager" }, [
-      _vm.isLogged() == true
-        ? _c("div", { staticClass: "subir-archivo" }, [
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "content" }, [
-                _c(
-                  "form",
+    _vm.public__files == true || _vm.all__files == true
+      ? _c("div", { staticClass: "file-manager" }, [
+          _vm.isLogged() == true
+            ? _c("div", { staticClass: "subir-archivo" }, [
+                _c("div", { staticClass: "container" }, [
+                  _c("div", { staticClass: "content" }, [
+                    _c(
+                      "form",
+                      {
+                        attrs: {
+                          action: "/api/file/upload",
+                          method: "POST",
+                          enctype: "multipart/form-data",
+                        },
+                      },
+                      [
+                        _c("input", { attrs: { type: "file", name: "file" } }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: { type: "hidden", name: "email" },
+                          domProps: { value: _vm.user_email() },
+                        }),
+                        _vm._v(" "),
+                        _c("button", { attrs: { type: "submit" } }, [
+                          _vm._v("Subir archivo"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "archivos-subidos" },
+            [
+              _c("h4", [_vm._v("Archivos subidos")]),
+              _vm._v(" "),
+              _vm._l(_vm.files, function (file) {
+                return _c(
+                  "a",
                   {
-                    attrs: {
-                      action: "/api/file/upload",
-                      method: "POST",
-                      enctype: "multipart/form-data",
+                    key: file.id,
+                    attrs: { href: "#" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.downloadFile(file.index)
+                      },
                     },
                   },
                   [
-                    _c("input", { attrs: { type: "file", name: "file" } }),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "email" },
-                      domProps: { value: _vm.user_email() },
-                    }),
-                    _vm._v(" "),
-                    _c("button", { attrs: { type: "submit" } }, [
-                      _vm._v("Subir archivo"),
-                    ]),
+                    _vm._v(
+                      _vm._s(file.name) + " -\n        " + _vm._s(file.user)
+                    ),
                   ]
-                ),
-              ]),
-            ]),
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "archivos-subidos" },
-        [
-          _c("h4", [_vm._v("Archivos subidos")]),
-          _vm._v(" "),
-          _vm._l(_vm.files, function (file) {
-            return _c(
-              "a",
-              {
-                key: file.id,
-                attrs: { href: "#" },
-                on: {
-                  click: function ($event) {
-                    return _vm.downloadFile(file.index)
-                  },
-                },
-              },
-              [_vm._v(_vm._s(file.name) + " - " + _vm._s(file.user))]
-            )
-          }),
-        ],
-        2
-      ),
-    ]),
+                )
+              }),
+            ],
+            2
+          ),
+        ])
+      : _vm._e(),
     _vm._v(" "),
-    _vm.isLogged() == true
+    _vm.isLogged() == true && _vm.own__files == true
       ? _c("div", { staticClass: "own-files" }, [
           _c("div", { staticClass: "subir-archivo" }, [
             _c("div", { staticClass: "container" }, [
@@ -30034,26 +30049,70 @@ var render = function () {
                   "form",
                   {
                     attrs: {
+                      id: "own-files-form",
                       action: "/api/file/upload",
                       method: "POST",
                       enctype: "multipart/form-data",
                     },
                   },
                   [
-                    _c("input", { attrs: { type: "file", name: "file" } }),
+                    _c("input", {
+                      staticStyle: { visibility: "hidden" },
+                      attrs: {
+                        type: "file",
+                        id: "own-file-upload",
+                        name: "file",
+                      },
+                    }),
                     _vm._v(" "),
                     _c("input", {
                       attrs: { type: "hidden", name: "email" },
                       domProps: { value: _vm.user_email() },
                     }),
-                    _vm._v(" "),
-                    _c("button", { attrs: { type: "submit" } }, [
-                      _vm._v("Subir archivo"),
-                    ]),
                   ]
                 ),
               ]),
             ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "upload-container" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark subir-arhivo",
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    return _vm.click_uploader("own")
+                  },
+                },
+              },
+              [_vm._v("Subir archivo")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: {
+                type: "email",
+                readonly: "",
+                id: "exampleFormControlInput1",
+                placeholder: "",
+              },
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark subir-arhivo",
+                attrs: { type: "submit" },
+                on: {
+                  click: function ($event) {
+                    return _vm.uploadForm()
+                  },
+                },
+              },
+              [_vm._v("Confirmar")]
+            ),
           ]),
           _vm._v(" "),
           _c(

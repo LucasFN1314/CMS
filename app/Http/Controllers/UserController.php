@@ -27,6 +27,10 @@ class UserController extends Controller
         return view('register');
     }
 
+    public function filespage() {
+        return view('User.MyFiles');
+    }
+
     public function login(Request $request)
     {
         $ret = ['msg'=> 'Credenciales incorrectas'];

@@ -18,8 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// USER AUTH
 Route::get('/iniciar-sesion', [UserController::class, 'loginpage']);
 Route::get('/registrarse', [UserController::class, 'registerpage']);
+
+// USER VIEWS
+Route::get('/usuario/archivos', [UserController::class, 'filespage']);
+
+// USER AUTH
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/user/logout', [UserController::class, 'logout']);
