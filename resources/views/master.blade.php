@@ -26,8 +26,7 @@ if(Auth::check()){
 
 <style>
     body {
-        /*background: #0e0e18;
-        */
+        background: #0e0e18;
     }
 </style>
 

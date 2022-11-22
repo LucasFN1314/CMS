@@ -5376,7 +5376,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         'Cerrar sesion': {
           'text': 'Cerrar sesion',
-          'action': '/api/user/logout'
+          'action': '/user/logout'
         }
       }
     };
@@ -5734,7 +5734,18 @@ __webpack_require__.r(__webpack_exports__);
       show: false
     };
   },
-  methods: {},
+  methods: {
+    action: function action(_action) {
+      if (_action) {
+        axios.post(_action).then(function (response) {
+          var resp = response.data;
+          if (resp.action) {
+            eval(resp.action);
+          }
+        });
+      }
+    }
+  },
   mounted: function mounted() {},
   props: ['href', 'text', 'list']
 });
@@ -11242,7 +11253,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.li[data-v-b878b7e8] {\r\n    position: relative;\n}\n.li a[data-v-b878b7e8] {\r\n    \r\n    text-decoration: none;\r\n    color:rgb(190, 190, 190);\n}\n.submenu[data-v-b878b7e8] {\r\n    font-family: 'Roboto', sans-serif;\r\n\r\n    margin: 0;\r\n    padding: 0;\r\n    position: absolute;\r\n\r\n    top: 100%;\r\n    left: 0;\r\n    list-style: none;\r\n\r\n    background-color: #202030;\r\n    width: -moz-fit-content;\r\n    width: fit-content;\r\n    animation: openSubmenu-data-v-b878b7e8;\r\n    animation-duration: .2s;\n}\n.submenu li a[data-v-b878b7e8] {\r\n    display: block;\r\n    padding: .5em;\r\n    text-decoration: none;\r\n    color:rgb(190, 190, 190);\r\n\r\n    white-space: nowrap;\n}\n.submenu li a[data-v-b878b7e8]:hover {\r\n    transition: .2s;\r\n    background-color: rgba(255, 255, 255, 0.100);\n}\n@keyframes openSubmenu-data-v-b878b7e8 {\n0% {\r\n        opacity: 0%;\n}\n100% {\r\n        opacity: 100%;\n}\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.li[data-v-b878b7e8] {\r\n    position: relative;\n}\n.li a[data-v-b878b7e8] {\r\n    \r\n    text-decoration: none;\r\n    color:rgb(190, 190, 190);\n}\n.submenu[data-v-b878b7e8] {\r\n    font-family: 'Roboto', sans-serif;\r\n\r\n    margin: 0;\r\n    padding: 0;\r\n    position: absolute;\r\n\r\n    top: 100%;\r\n    left: 0;\r\n    list-style: none;\r\n\r\n    background-color: #202030;\r\n    width: -moz-fit-content;\r\n    width: fit-content;\r\n    animation: openSubmenu-data-v-b878b7e8;\r\n    animation-duration: .2s;\n}\n.submenu li a[data-v-b878b7e8] {\r\n    display: block;\r\n    padding: .5em;\r\n    text-decoration: none;\r\n    color:rgb(190, 190, 190);\r\n\r\n    white-space: nowrap;\n}\n.submenu li a[data-v-b878b7e8]:hover {\r\n    cursor: pointer;\r\n\r\n    transition: .2s;\r\n    color:rgb(190, 190, 190);\r\n\r\n    background-color: rgba(255, 255, 255, 0.100);\n}\n@keyframes openSubmenu-data-v-b878b7e8 {\n0% {\r\n        opacity: 0%;\n}\n100% {\r\n        opacity: 100%;\n}\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30428,7 +30439,7 @@ var render = function () {
           _vm.show = true
         },
         mouseleave: function ($event) {
-          _vm.show = false
+          _vm.show = true
         },
       },
     },
@@ -30443,9 +30454,19 @@ var render = function () {
               "li",
               { staticClass: "list" },
               _vm._l(_vm.list, function (item, index) {
-                return _c("a", { key: index, attrs: { href: item.link } }, [
-                  _vm._v(_vm._s(item.text)),
-                ])
+                return _c(
+                  "a",
+                  {
+                    key: index,
+                    attrs: { href: item.link },
+                    on: {
+                      click: function ($event) {
+                        return _vm.action(item.action)
+                      },
+                    },
+                  },
+                  [_vm._v(_vm._s(item.text))]
+                )
               }),
               0
             ),

@@ -1,12 +1,12 @@
 <template>
-    <li class="li" v-on:mouseenter="show = true" v-on:mouseleave="show = false;">
+    <li class="li" v-on:mouseenter="show = true" v-on:mouseleave="show = true;">
         <a href="">
             {{this.text}}
         </a>
 
         <ul class="submenu" v-if="show">
             <li class="list">
-                <a v-for="(item, index) in list" :key="index" :href="item.link">{{item.text}}</a>
+                <a v-for="(item, index) in list" :key="index" :href="item.link" v-on:click="action(item.action)">{{item.text}}</a>
             </li>
         </ul>
     </li>
@@ -19,7 +19,16 @@ export default {
         }   
     },
     methods: {
-        
+        action(action) {
+            if(action) {
+                axios.post(action).then((response) => {
+                    let resp = response.data;
+                    if(resp.action) {
+                        eval(resp.action);
+                    }
+                });
+            }
+        }
     },
     mounted(){
     },
@@ -72,7 +81,11 @@ export default {
 }
 
 .submenu li a:hover {
+    cursor: pointer;
+
     transition: .2s;
+    color:rgb(190, 190, 190);
+
     background-color: rgba(255, 255, 255, 0.100);
 }
 

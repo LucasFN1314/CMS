@@ -39,7 +39,7 @@ export default {
                 },
                 'Cerrar sesion': {
                     'text': 'Cerrar sesion',
-                    'action': '/api/user/logout'
+                    'action': '/user/logout'
                 }
             }
         }

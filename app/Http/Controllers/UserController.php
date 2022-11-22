@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -74,5 +75,12 @@ class UserController extends Controller
 
         return $ret;
 
+    }
+
+    public function logout(Request $req) {
+        Session::flush();
+
+        Auth::logout();
+        return ['action' => 'location.href = "/";'];
     }
 }
